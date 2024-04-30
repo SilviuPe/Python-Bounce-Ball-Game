@@ -29,7 +29,7 @@ def main():
                 sys.exit()
 
         main_ball.draw_ball()
-
+        main_ball.change_color()
         pygame.display.update()
 
 
