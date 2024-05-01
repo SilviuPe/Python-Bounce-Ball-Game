@@ -12,10 +12,11 @@ class ground:
         self.window = window
         self.center_point = (self.window.get_size()[0]//2,self.window.get_size()[1]//2)
     
+        self.circle_color = [255,255,255]
     
     # DISPLAY THE GROUND
     def display(self) -> None:
-        pygame.draw.circle(self.window, (255,255,55), self.center_point, self.free_space, width = 5)
+        pygame.draw.circle(self.window, self.circle_color, self.center_point, self.free_space, width = 5)
 
 
     def collision_ball(self, ball_position : tuple, radius : int) -> bool:

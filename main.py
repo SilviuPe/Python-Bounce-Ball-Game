@@ -17,7 +17,6 @@ import os
 def main():
 
     game_display = pygame.display.set_mode((900,900))
-    sound = pygame.mixer.Sound('sound.wav')
     running = True 
     clock = pygame.time.Clock()
 
@@ -34,20 +33,24 @@ def main():
                 sys.exit()
         
         if game_ground.collision_ball(ball.position,ball.size):
-            ball.horizontally *= -1;
-            ball.vertically *= -1;
+            ball.position[0] += -5 * ball.horizontally
+            ball.position[1] += -5 * ball.vertically
             ball.size += 1
 
-            ball.position[0] += ball.horizontally * 2
-            ball.position[1] += ball.vertically * 2
+    
+            ball.change_direction()
+            
             ball.color_changing_index = random.randint(0,2)
-            pygame.mixer.Sound.play(sound)
-
+            game_ground.circle_color = [random.randint(0,255),random.randint(0,255),random.randint(0,255)]
+            
+            print(ball.position)
+            print(ball.horizontally, ball.vertically)
+            #sleep(1)
         game_ground.display()
         ball.draw_ball()
         pygame.display.update()
 
-        clock.tick(180)
+        #clock.tick(900)
 
 
 main()
