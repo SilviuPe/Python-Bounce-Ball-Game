@@ -2,11 +2,14 @@ import pygame
 import random 
 
 class Ball: 
-    def __init__(self,display):
+    def __init__(self,display, position = None):
 
         self.game_display = display # Game display
         self.size = 50 # the radius of the ball
-        self.position = [151,250] # position coordonates
+        if position:
+            self.position = position # position coordonates
+        else:
+            self.position = [200,200]
         self.color = [0,255,0] # color RGB
         self.horizontally = 1 # vertical movement
         self.vertically = 1 # horizontal movement
@@ -45,9 +48,10 @@ class Ball:
     def collision(self) -> None:
         pass # TODO detect collision
 
-    def draw_ball(self):
+    def draw_ball(self, static = False):
         # Change the direction before draw the ball
-        self.follow_direction()
-        self.change_color()
+        if not static:
+            self.follow_direction()
+            self.change_color()
         # Draw the ball 
         pygame.draw.circle(self.game_display, tuple(self.color), self.position, self.size, width = 10)
